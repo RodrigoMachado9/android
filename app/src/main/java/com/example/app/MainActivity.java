@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        objects layout
+        //objects layout
         setContentView(R.layout.activity_main);
         editPeso = findViewById(R.id.editPeso);
         editAltura = findViewById(R.id.editAltura);
@@ -28,13 +28,48 @@ public class MainActivity extends AppCompatActivity {
         btCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                get input values
+                //get input values
                 float peso, altura, imc;
+                String message;
+
+
                 peso = Float.parseFloat(editPeso.getText().toString());
                 altura = Float.parseFloat(editAltura.getText().toString());
                 imc = peso/ (altura * altura);
                 tvResultado.setText(String.valueOf(imc));
+                if (imc <= 16 ){
+                    message = "Muito severamente abaixo do peso";
+                    tvClassicacao.setText(message);
+                }
+                if (imc > 16 && imc <= 18.5){
+                    message = "Abaixo do peso";
+                    tvClassicacao.setText(message);
+                }
+                if (imc > 18.5 && imc <= 25){
+                    message= "Peso saudável";
+                    tvClassicacao.setText(message);
+                }
+                if (imc > 25 && imc <= 30){
+                    message = "Acima do peso";
+                    tvClassicacao.setText(message);
+                }
+                if (imc > 30 && imc <= 35){
+                    message =  "Obesidade moderada";
+                    tvClassicacao.setText(message);
+                }
+
+                if(imc > 35 && imc <= 40){
+                    message= "Obesidade servera";
+                    tvClassicacao.setText(message);
+                }
+                if (imc > 40){
+                    message=  "Obesidade mórbida";
+                    tvClassicacao.setText(message);
+                }
+
             }
+
+
         });
     }
 
